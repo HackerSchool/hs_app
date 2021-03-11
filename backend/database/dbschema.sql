@@ -3,7 +3,7 @@ START TRANSACTION;
 create table project
     (p_name varchar(50) not null unique,
     p_description varchar(200) not null,
-    p_status int not null,
+    p_status int not null, /* 1 - ativo, 0 - inativo */
     constraint pk_project primary key(p_name));
 
 /*create table on_going_p
@@ -24,6 +24,7 @@ create table member_
     m_tlm varchar(25) not null,
     m_degree varchar(50) not null,
     m_year int not null,
+    m_admin int not null, /* 0 - nao, 1 - sim */
     constraint pk_member primary key(member_id));
 
 create table project_members
@@ -41,10 +42,12 @@ create table member_skill
 
 create table announcement
     (a_id int not null unique,
-    a_title varchar(50) not null,
+    a_title varchar(20) not null,
+    a_date date,
     a_description varchar(500) not null,
-    a_reg_date date not null,
-    a_del_date date not null,
+    a_links varchar(500),
+    a_del_date date,
+    a_weekly int,
     constraint pk_announcement primary key(a_id));
 
 COMMIT;

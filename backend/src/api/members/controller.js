@@ -1,4 +1,4 @@
-const fields = ['m_id', 'm_pass', 'm_name', 'm_email', 'm_tlm', 'm_degree', 'm_year'];
+const fields = ['m_id', 'm_pass', 'm_name', 'm_email', 'm_tlm', 'm_degree', 'm_year', 'm_admin'];
 
 const formatResponse = (responde) => ({
     istID: response.m_id,
@@ -7,6 +7,7 @@ const formatResponse = (responde) => ({
     phone: response.m_tlm,
     degree: response.m_degree,
     year: response.m_year,
+    admin: response.m_admin,
 });
 
 module.exports = {
