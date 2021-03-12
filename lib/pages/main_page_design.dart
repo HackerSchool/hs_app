@@ -4,7 +4,7 @@ import '../lists/announcement_list.dart';
 import '../lists/member_list.dart';
 import '../design/letters_design.dart';
 import '../design/colors.dart';
-import '../design/one_announcement_page.dart';
+import 'one_announcement_page.dart';
 
 class MainPageDesign extends StatelessWidget {
   final List<AnnouncementInformation> _announcementInformations;
@@ -17,17 +17,31 @@ class MainPageDesign extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: announcementGrey,
-      appBar: _appBarFunction(context),
-      body: Padding(
-        padding: const EdgeInsets.all(3), //mete o espaço em cima
-        child: ListView.builder(
-          itemCount: this._announcementInformations.length,
-          itemBuilder: _designPage,
+        backgroundColor: announcementGrey,
+        appBar: _appBarFunction(context),
+        body: Padding(
+          padding: const EdgeInsets.all(3), //mete o espaço em cima
+          child: ListView.builder(
+            itemCount: this._announcementInformations.length,
+            itemBuilder: _designPage,
+          ),
         ),
-      ),
-      drawer: _drawerFunction(context),
-    );
+        drawer: _drawerFunction(context),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+        floatingActionButton: FloatingActionButton(
+          backgroundColor: backgroundGreen,
+          elevation: 10.0,
+          child: Container(
+            child: Icon(
+              Icons.add_rounded,
+              size: 50.0,
+              color: textGrey,
+            ),
+          ),
+          onPressed: () {
+            _openEmptyPage(context);
+          },
+        ));
   }
 
   Widget _appBarFunction(BuildContext context) {
@@ -45,12 +59,25 @@ class MainPageDesign extends StatelessWidget {
               'assets/hs_logo.png',
               alignment: Alignment.center,
               fit: BoxFit.fitWidth,
-              color: textGrey,
+              color: Colors.white,
               height: 50,
             ),
           ),
         ],
       ),
+      actions: <Widget>[
+        Padding(
+          //REVER COLOCAÇÃO
+          padding: EdgeInsets.only(left: 25.0),
+          child: GestureDetector(
+            child: Icon(
+              Icons.search_rounded,
+              color: Colors.white,
+            ),
+            onTap: () {},
+          ),
+        )
+      ],
     );
   }
 
@@ -74,8 +101,8 @@ class MainPageDesign extends StatelessWidget {
 
   Widget _drawerFunction(BuildContext context) {
     return Drawer(
+      //TENHO DE VER O ICONE E A POSIÇÃO, TAMANHO E COR
       child: ListView.builder(
-        padding: EdgeInsets.zero,
         itemCount: this._menuList.length,
         itemBuilder: _designMenu,
       ),
@@ -121,7 +148,7 @@ class MainPageDesign extends StatelessWidget {
               ),
             ),
             Align(
-              //alignment: Alignment(-0.35, 0.4),
+              //alignment: Alignment(-0.35, 0.4),3
               alignment: Alignment.centerLeft + Alignment(0.9, 0.2),
               child: Text(
                 'ist1${_memberList.id}',
@@ -143,7 +170,8 @@ class MainPageDesign extends StatelessWidget {
           style: Styles.textDesign,
         ),
         onTap: () {
-          //_announcementPage(context,index);
+          //_openEmptyPage(context);
+          _openEmptyPage(context);
         },
       );
     }
@@ -159,7 +187,7 @@ class MainPageDesign extends StatelessWidget {
 
   Widget _oneAnnouncementDate(AnnouncementInformation announcementInformation) {
     return Text(
-      announcementInformation.event_date,
+      announcementInformation.eventDate,
       style: Styles.textDesign,
     );
   }
@@ -167,7 +195,7 @@ class MainPageDesign extends StatelessWidget {
   Widget _oneAnnouncementPublicationDate(
       AnnouncementInformation announcementInformation) {
     return Text(
-      'Published: \n ${announcementInformation.publication_date}',
+      'Published: \n ${announcementInformation.publicationDate}',
       style: Styles.publicationDateDesign,
     );
   }
@@ -194,3 +222,5 @@ class MainPageDesign extends StatelessWidget {
                 OneAnnouncementPage(announcementInformations)));
   }
 }
+
+//remoteService

@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 class Styles {
   //define letters size
-  static const _titleSize = 25.0;
-  static const _textSize = 16.0;
+  static const _titleSize = 20.0;
+  static const _textSize = 12.0;
   static const _publicationDateSize = 10.0;
 
   //define colors

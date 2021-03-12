@@ -1,15 +1,17 @@
 class AnnouncementInformation {
   final String title;
-  final String publication_date;
-  final String event_date;
-  final String event_hour;
+  final String publicationDate;
+  final String eventDate;
+  final String eventHour;
   final String links;
   final String explanation;
+  final String iconLink;
   AnnouncementInformation(
       {this.title,
-      this.publication_date,
-      this.event_date,
-      this.event_hour,
+      this.publicationDate,
+      this.eventDate,
+      this.eventHour,
       this.links,
-      this.explanation});
+      this.explanation,
+      this.iconLink});
 }
