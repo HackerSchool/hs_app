@@ -9,6 +9,11 @@ void main() {
   final menu = MenuInformation.allItems();
   final member = MemberInformation.oneItem();
 
+  return runApp(MaterialApp(
+    home: MainPageDesign(mainPage, menu, member),
+    theme: ThemeData(
+        //ISTO ERA MUITO FIXE DE EXPLORAR!!
 
-  return runApp(MaterialApp(home: MainPageDesign(mainPage, menu, member)));
+        ),
+  ));
 }

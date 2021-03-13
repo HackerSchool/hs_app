@@ -39,7 +39,7 @@ class MainPageDesign extends StatelessWidget {
             ),
           ),
           onPressed: () {
-            _openEmptyPage(context);
+            _addAnnouncementPage(context);
           },
         ));
   }
@@ -221,6 +221,12 @@ class MainPageDesign extends StatelessWidget {
             builder: (context) =>
                 OneAnnouncementPage(announcementInformations)));
   }
-}
 
-//remoteService
+  void _addAnnouncementPage(BuildContext context) {
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) =>
+                AddOneAnnounce()));
+  }
+}
