@@ -78,8 +78,8 @@ class OneAnnouncementPage extends StatelessWidget {
 
 class AddOneAnnounce extends StatelessWidget {
   DateTime _announceDate;
-  //DateTime _announceHour = DateTime.now();
-  TimeOfDay _announceHour;
+  DateTime _announceHour = DateTime.now();
+  //TimeOfDay _announceHour;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -154,7 +154,7 @@ class AddOneAnnounce extends StatelessWidget {
                         _announceDate = date;
                       });
                     }),
-                ElevatedButton(
+                /*  ElevatedButton(
                     child: Text(
                       'Choose a hour',
                       style: Styles.textDesign,
@@ -165,24 +165,23 @@ class AddOneAnnounce extends StatelessWidget {
                           .then((time) {
                         _announceHour = time;
                       });
-                    }),
+                    }), */
 
-                /* ElevatedButton(
+                /*  ElevatedButton(
                     child: Text(
                       'Choose a hour',
                       style: Styles.textDesign,
                     ),
-                    onPressed: () {
-                      SizedBox(
-                          height: 100,
-                          child: CupertinoDatePicker(
-                              initialDateTime: _announceHour,
-                              mode: CupertinoDatePickerMode.time,
-                              onDateTimeChanged: (dateTime) {
-                                print(dateTime);
-                                _announceHour = dateTime;
-                              }));
-                    }) */
+                    onPressed: () { */
+                SizedBox(
+                    height: 100,
+                    child: CupertinoDatePicker(
+                        initialDateTime: _announceHour,
+                        mode: CupertinoDatePickerMode.time,
+                        onDateTimeChanged: (dateTime) {
+                          print(dateTime);
+                          _announceHour = dateTime;
+                        }))
               ],
             ))));
   }
