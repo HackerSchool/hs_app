@@ -23,11 +23,12 @@ class OneAnnouncementPage extends StatelessWidget {
         ),
         body: Padding(
             padding: const EdgeInsets.all(20),
-            child: Column(
+            child: SingleChildScrollView(
+                child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: _pageAnnounce(context, announcementInformations),
-            )));
+            ))));
   }
 
   /* List<Widget> _pageAnnounce(
@@ -76,10 +77,14 @@ class OneAnnouncementPage extends StatelessWidget {
   }
 }
 
-class AddOneAnnounce extends StatelessWidget {
+class AddOneAnnouncement extends StatefulWidget {
+  @override
+  _AddOneAnnouncementState createState() => _AddOneAnnouncementState();
+}
+
+class _AddOneAnnouncementState extends State<AddOneAnnouncement> {
   DateTime _announceDate;
-  DateTime _announceHour = DateTime.now();
-  //TimeOfDay _announceHour;
+  TimeOfDay _announceHour;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -123,7 +128,7 @@ class AddOneAnnounce extends StatelessWidget {
                   ),
                   maxLength: 500,
                   minLines: 1,
-                  maxLines: 10,
+                  maxLines: 100,
                   style: Styles.textDesign,
                   cursorColor: Colors.white,
                 ),
@@ -131,13 +136,13 @@ class AddOneAnnounce extends StatelessWidget {
                   height: 16,
                 ),
                 Text(
-                  _announceDate == null
-                      ? 'Event Date/Hour'
-                      : _announceDate.toString(),
+                  'Event Date/Hour',
                   style: Styles.addAnnounceTitle,
                   textAlign: TextAlign.left,
                 ),
-                ElevatedButton(
+                RaisedButton(
+                    color: backgroundGreen,
+                    elevation: 20.0,
                     child: Text(
                       'Choose a date',
                       style: Styles.textDesign,
@@ -151,123 +156,74 @@ class AddOneAnnounce extends StatelessWidget {
                         firstDate: DateTime(2021),
                         lastDate: DateTime(2022),
                       ).then((date) {
-                        _announceDate = date;
+                        setState(() {
+                          _announceDate = date;
+                        });
                       });
                     }),
-                /*  ElevatedButton(
+                Text(
+                  'Picked Date: $_announceDate',
+                  style: Styles.textDesign,
+                  textAlign: TextAlign.left,
+                ),
+                RaisedButton(
+                    elevation: 20.0,
+                    color: backgroundGreen,
                     child: Text(
                       'Choose a hour',
                       style: Styles.textDesign,
                     ),
                     onPressed: () {
                       showTimePicker(
-                              context: context, initialTime: _announceHour)
-                          .then((time) {
-                        _announceHour = time;
+                        context: context,
+                        initialTime: _announceHour == null
+                            ? TimeOfDay.now()
+                            : _announceHour,
+                      ).then((date) {
+                        setState(() {
+                          _announceHour = date;
+                        });
                       });
-                    }), */
-
-                /*  ElevatedButton(
+                    }),
+                Text(
+                  'Picked Hour: $_announceHour',
+                  style: Styles.textDesign,
+                  textAlign: TextAlign.left,
+                ),
+                SizedBox(
+                  height: 16,
+                ),
+                TextField(
+                  decoration: InputDecoration(
+                    hintText: "In the format 'Name:link'",
+                    hintStyle: Styles.textDesign,
+                    labelText: "Links",
+                    labelStyle: Styles.addAnnounceTitle,
+                    border: UnderlineInputBorder(),
+                  ),
+                  cursorColor: Colors.white,
+                  maxLength: 500,
+                  minLines: 1,
+                  maxLines: 100,
+                  style: Styles.textDesign,
+                ),
+                SizedBox(
+                  height: 16,
+                ),
+                Text(
+                  'Publish the Announcement?',
+                  style: Styles.addAnnounceTitle,
+                  textAlign: TextAlign.left,
+                ),
+                RaisedButton(
+                    color: backgroundGreen,
+                    elevation: 20.0,
                     child: Text(
-                      'Choose a hour',
+                      'Yes!',
                       style: Styles.textDesign,
                     ),
-                    onPressed: () { */
-                SizedBox(
-                    height: 100,
-                    child: CupertinoDatePicker(
-                        initialDateTime: _announceHour,
-                        mode: CupertinoDatePickerMode.time,
-                        onDateTimeChanged: (dateTime) {
-                          print(dateTime);
-                          _announceHour = dateTime;
-                        }))
+                    onPressed: () {})
               ],
             ))));
   }
 }
-
-/* Para login page falta:
-
-TextField(
-              controller: _passwordController,
-              decoration: InputDecoration(
-                  hintText: "Password",
-                  labelText: "Password",
-                  errorText: _passwordError,
-                  labelStyle: TextStyle(fontSize: 24, color: Colors.black),
-                  border: OutlineInputBorder(),
-                  fillColor: Colors.black12,
-                  filled: true
-                  suffixIcon: IconButton(
-                    icon: Icon(
-                        _secureText ? Icons.remove_red_eye : Icons.security),
-                    onPressed: () {
-                      setState(() {
-                        _secureText = !_secureText;
-                      });
-                    },
-                  )),
-              obscureText: _secureText,
-              maxLines: 3,
-              maxLength: 20,
-            ),
-            SizedBox(
-              height: 16,
-            ),
-            Form(
-                key: _formKey,
-                child: Column(
-                  children: [
-                    TextFormField(
-                      validator: (String value) {
-                        if (value.length < 10)
-                          return "Enter at least 10 char";
-                        else
-                          return null;
-                      },
-                      decoration: InputDecoration(
-                          hintText: "Name",
-                          labelText: "Name",
-                          labelStyle:
-                              TextStyle(fontSize: 24, color: Colors.black),
-                          border: OutlineInputBorder()),
-                    ),
-                    SizedBox(
-                      height: 16,
-                    ),
-                    TextFormField(
-                      validator: (String value) {
-                        if (value.length < 3)
-                          return "Enter at least 3 char";
-                        else
-                          return null;
-                      },
-                      decoration: InputDecoration(
-                          hintText: "Password",
-                          labelText: "Password",
-                          labelStyle:
-                              TextStyle(fontSize: 24, color: Colors.black),
-                          border: OutlineInputBorder()),
-                      obscureText: true,
-                    ),
-                  ],
-                )),
-            SizedBox(
-              height: 16,
-            ),
-            RaisedButton(onPressed: () {
-              print("Password : " + _passwordController.text);
-              setState(() {
-                print("Form Validation : " +
-                    _formKey.currentState.validate().toString());
-                if (_passwordController.text.length < 3)
-                  _passwordError = "Enter at least 3 char";
-                else
-                  _passwordError = null;
-              });
-            })
-
-
-
-*/

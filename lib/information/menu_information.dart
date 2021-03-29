@@ -5,8 +5,8 @@ class MenuInformation extends MenuList {
   static final List<MenuList> items = [
     null,
     MenuList(
-      title: 'Announcements',
-      icon: Icons.campaign_outlined,
+      title: 'Login',
+      icon: Icons.login,
     ),
     MenuList(
       title: 'Projects',

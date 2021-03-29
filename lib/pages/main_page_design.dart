@@ -1,18 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:primeira_app/lists/project_list.dart';
 import '../lists/menu_list.dart';
 import '../lists/announcement_list.dart';
 import '../lists/member_list.dart';
 import '../design/letters_design.dart';
 import '../design/colors.dart';
 import 'one_announcement_page.dart';
+import '../pages/project_page.dart';
+import '../pages/login.dart';
 
 class MainPageDesign extends StatelessWidget {
   final List<AnnouncementInformation> _announcementInformations;
   final List<MenuList> _menuList;
   final MemberList _memberList;
+  final List<ProjectInformation> _projectList;
 
-  MainPageDesign(
-      this._announcementInformations, this._menuList, this._memberList);
+  MainPageDesign(this._announcementInformations, this._menuList,
+      this._memberList, this._projectList);
 
   @override
   Widget build(BuildContext context) {
@@ -68,13 +72,9 @@ class MainPageDesign extends StatelessWidget {
       actions: <Widget>[
         Padding(
           //REVER COLOCAÇÃO
-          padding: EdgeInsets.only(left: 25.0),
-          child: GestureDetector(
-            child: Icon(
-              Icons.search_rounded,
-              color: Colors.white,
-            ),
-            onTap: () {},
+          padding: EdgeInsets.only(right: 10),
+          child: CircleAvatar(
+            backgroundImage: AssetImage('assets/${_memberList.photo}'),
           ),
         )
       ],
@@ -111,24 +111,12 @@ class MainPageDesign extends StatelessWidget {
 
   Widget _designMenu(BuildContext context, int index) {
     var menuInformations = this._menuList[index];
-
     if (index == 0) {
       return DrawerHeader(
         decoration: BoxDecoration(
           color: backgroundGrey,
         ),
         margin: const EdgeInsets.only(bottom: 0), //espaço entre header e o menu
-        /* child: ListTile(
-          contentPadding: EdgeInsets.all(0),
-          leading: CircleAvatar(
-            backgroundImage: AssetImage('assets/${_memberList.photo}'),
-            radius: 50.0,
-          ),
-          title: Text(
-            _memberList.name,
-          ),
-          subtitle: Text('ist1${_memberList.id}'),
-        ), */
         child: Stack(
           children: <Widget>[
             Align(
@@ -170,8 +158,7 @@ class MainPageDesign extends StatelessWidget {
           style: Styles.textDesign,
         ),
         onTap: () {
-          //_openEmptyPage(context);
-          _openEmptyPage(context);
+          _choosePageToOpen(context, _projectList, index);
         },
       );
     }
@@ -224,9 +211,28 @@ class MainPageDesign extends StatelessWidget {
 
   void _addAnnouncementPage(BuildContext context) {
     Navigator.push(
-        context,
-        MaterialPageRoute(
-            builder: (context) =>
-                AddOneAnnounce()));
+        context, MaterialPageRoute(builder: (context) => AddOneAnnouncement()));
+  }
+
+  void _openProjectsPage(
+      BuildContext context, List<ProjectInformation> projectList) {
+    Navigator.push(context,
+        MaterialPageRoute(builder: (context) => ProjectsPage(projectList)));
+  }
+
+  void _openLoginPage(BuildContext context) {
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => LoginPage()));
+  }
+
+  void _choosePageToOpen(
+      BuildContext context, List<ProjectInformation> projectList, int index) {
+    if (index == 1) {
+      _openLoginPage(context);
+    } else if (index == 2) {
+      _openProjectsPage(context, _projectList);
+    } else {
+      _openEmptyPage(context);
+    }
   }
 }
