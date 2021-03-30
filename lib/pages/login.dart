@@ -8,7 +8,7 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  int _currentIndex = 0;
+  int currentIndex = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -17,6 +17,7 @@ class _ProjectsPageState extends State<ProjectsPage> {
 
   @override
   Widget build(BuildContext context) {
+    int number_for = this.widget._projectInformations.length;
     return Scaffold(
       backgroundColor: backgroundGrey,
       appBar: AppBar(
