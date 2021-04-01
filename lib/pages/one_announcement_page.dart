@@ -140,6 +140,7 @@ class _AddOneAnnouncementState extends State<AddOneAnnouncement> {
                   style: Styles.addAnnounceTitle,
                   textAlign: TextAlign.left,
                 ),
+                // ignore: deprecated_member_use
                 RaisedButton(
                     color: backgroundGreen,
                     elevation: 20.0,
@@ -166,6 +167,7 @@ class _AddOneAnnouncementState extends State<AddOneAnnouncement> {
                   style: Styles.textDesign,
                   textAlign: TextAlign.left,
                 ),
+                // ignore: deprecated_member_use
                 RaisedButton(
                     elevation: 20.0,
                     color: backgroundGreen,
@@ -215,6 +217,7 @@ class _AddOneAnnouncementState extends State<AddOneAnnouncement> {
                   style: Styles.addAnnounceTitle,
                   textAlign: TextAlign.left,
                 ),
+                // ignore: deprecated_member_use
                 RaisedButton(
                     color: backgroundGreen,
                     elevation: 20.0,

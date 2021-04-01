@@ -14,7 +14,6 @@ void main() {
 
   return runApp(MaterialApp(
     theme: ThemeData(
-      //ISTO ERA MUITO FIXE DE EXPLORAR!!
       primaryColor: backgroundGrey,
       primaryColorLight: backgroundGrey,
       accentColor: backgroundGrey,

@@ -38,6 +38,15 @@ class ProjectPageInformation extends ProjectInformation {
         explanation:
             'Reestruturação e melhoramento geral do website que vês perante ti! O objetivo é tornar o website mais dinâmico e agradável visualmente, adicionando ao mesmo tempo capacidade móvel e capacidade adaptativa, sendo que deverá interagir com o HSInventory e HSApp.',
         finished: 'Yes'),
+    ProjectInformation(
+        name: 'HS Site',
+        photo:
+            'https://www.google.com/maps/uv?pb=!1s0xd1933a3bf58649d%3A0xd7f3d7a384498675!3m1!7e115!4shttps%3A%2F%2Flh5.googleusercontent.com%2Fp%2FAF1QipMZnTcodgPmAnEkVfiH9fI5BVK8NcbYDDPxhRTB%3Dw160-h160-k-no!5shacker%20school%20-%20Pesquisa%20Google!15sCgIgAQ&imagekey=!1e10!2sAF1QipMZnTcodgPmAnEkVfiH9fI5BVK8NcbYDDPxhRTB&hl=pt-PT&sa=X&ved=2ahUKEwimjMm6xKTvAhWGYcAKHWQtDKkQoiowEnoECBoQAw&cshid=1615338400130077#',
+        start_date: '10/09/2020',
+        end_date: '10/07/2021',
+        explanation:
+            'Reestruturação e melhoramento geral do website que vês perante ti! O objetivo é tornar o website mais dinâmico e agradável visualmente, adicionando ao mesmo tempo capacidade móvel e capacidade adaptativa, sendo que deverá interagir com o HSInventory e HSApp.',
+        finished: 'Yes'),
   ];
   static ProjectInformation oneItem() {
     return items[0];
