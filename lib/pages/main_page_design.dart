@@ -58,7 +58,7 @@ class MainPageDesign extends StatelessWidget {
         children: <Widget>[
           //Devia pôr como Image.network mas o site não autoriza
           //Alinhar ao centro!
-          Align(
+          Center(
             child: Image.asset(
               'assets/hs_logo.png',
               alignment: Alignment.center,

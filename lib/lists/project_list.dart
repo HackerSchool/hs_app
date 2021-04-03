@@ -2,18 +2,20 @@ class ProjectInformation {
   final String name;
   final String photo;
   //final List<String> members[];
+  final int numberMembers;
   //final List<String> skills[];
-  final String start_date;
-  final String end_date;
+  final String startDate;
+  final String endDate;
   final String explanation;
   final String finished;
   ProjectInformation(
       {this.name,
       this.photo,
       //this.members,
+      this.numberMembers,
       //this.skills,
-      this.start_date,
-      this.end_date,
+      this.startDate,
+      this.endDate,
       this.explanation,
       this.finished});
 }

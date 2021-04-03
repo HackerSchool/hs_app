@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import '../lists/project_list.dart';
@@ -13,16 +15,17 @@ class ProjectsPage extends StatefulWidget {
   _ProjectsPageState createState() => _ProjectsPageState();
 }
 
+Widget getTextWidgets(List<String> strings) {
+  List<Widget> list = new List<Widget>();
+  for (var i = 0; i < strings.length; i++) {
+    list.add(new Text(strings[i]));
+  }
+  return new Row(children: list);
+}
+
 class _ProjectsPageState extends State<ProjectsPage> {
-  int i = 0;
-  int j = 0;
   @override
   Widget build(BuildContext context) {
-    int numberProjects = this.widget._projectInformations.length;
-    int numberFor = numberProjects ~/ 2;
-    // ignore: unused_local_variable
-    List<Widget> children = const <Widget>[];
-
     return Scaffold(
       backgroundColor: backgroundGrey,
       appBar: AppBar(
@@ -35,54 +38,56 @@ class _ProjectsPageState extends State<ProjectsPage> {
       body: Padding(
         padding: const EdgeInsets.all(3), //mete o espaço em cima
         child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-//FUNCIONA BEM MAS NÃO É GERAL
-              Row(
-                children: [
-                  for (i = 0; i < 2; i++)
-                    Expanded(
-                      child: oneGroup(
-                          context, this.widget._projectInformations[i]),
-                    ),
-                ],
-              ),
-              Row(
-                children: [
-                  for (i = 2; i < 4; i++)
-                    Expanded(
-                      child: oneGroup(
-                          context, this.widget._projectInformations[i]),
-                    ),
-                ],
-              ),
-//NÃO FUNCIONA MAS É GERAL
-              /* for (j = 0; j < 1; j++)
-                Row(
-                  children: [
-                    for (i = 0; i < 2; j++)
-                      Expanded(
-                        child: oneGroup(
-                            context, this.widget._projectInformations[i]),
-                      ),
-                  ],
-                ),
-
-              if (numberProjects % 2 != 0)
-                Row(
-                  children: [
-                    Expanded(
-                        child: oneGroup(
-                            context, this.widget._projectInformations[i]))
-                  ],
-                ) */
-            ],
-          ),
+          child: putOneLine(context, this.widget._projectInformations),
         ),
       ),
     );
+  }
+
+  Column putOneLine(
+      BuildContext context, List<ProjectInformation> projectInformations) {
+    int i = 0;
+    int j = 0;
+    int numberProjects = this.widget._projectInformations.length;
+    int numberFor = numberProjects ~/ 2;
+    List<Widget> children = new List<Widget>();
+
+    for (j = 0; j < numberFor; j++) {
+      children.add(new Row(
+        children: [
+          for (i = j * 2; i < j * 2 + 2; i++)
+            Expanded(
+              child: oneGroup(context, this.widget._projectInformations[i]),
+            ),
+        ],
+      ));
+    }
+    if (numberProjects % 2 != 0) {
+      children.add(new Row(
+        children: [
+          Expanded(
+              child: oneGroup(context, this.widget._projectInformations[i])),
+          Expanded(child: nullGroup(context))
+        ],
+      ));
+    }
+    return new Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: children);
+  }
+
+  Widget nullGroup(BuildContext context) {
+    return Card(
+        child: Container(
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(4.0),
+          gradient: LinearGradient(
+            colors: [backgroundGreen, announcementGrey],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+          )),
+    ));
   }
 
   Widget oneGroup(BuildContext context, ProjectInformation project) {
@@ -98,46 +103,7 @@ class _ProjectsPageState extends State<ProjectsPage> {
               )),
           child: Padding(
             padding: const EdgeInsets.all(20.0),
-            child: Column(
-              children: [
-                FittedBox(
-                  fit: BoxFit.fitWidth,
-                  child: Text(
-                    project.name,
-                    style: Styles.titleDesign,
-                  ),
-                ),
-                Row(children: [
-                  IconButton(
-                    icon: CircleAvatar(
-                      backgroundImage: NetworkImage(project.photo),
-                    ),
-                    onPressed: () {
-                      _openEmptyPage(context);
-                      print('Membro');
-                    },
-                  ),
-                  IconButton(
-                    icon: CircleAvatar(
-                      backgroundImage: NetworkImage(project.photo),
-                    ),
-                    onPressed: () {
-                      _openEmptyPage(context);
-                      print('Membro');
-                    },
-                  ),
-                  IconButton(
-                    icon: CircleAvatar(
-                      backgroundImage: NetworkImage(project.photo),
-                    ),
-                    onPressed: () {
-                      _openEmptyPage(context);
-                      print('Membro');
-                    },
-                  ),
-                ]),
-              ],
-            ),
+            child: putMembers(context, project),
           ),
         ),
       ),
@@ -146,6 +112,76 @@ class _ProjectsPageState extends State<ProjectsPage> {
         print('Projeto');
       },
     );
+  }
+
+  Column putMembers(BuildContext context, ProjectInformation project) {
+    int i = 0;
+    int aux1 = min(project.numberMembers, 3);
+    int aux2 = min(project.numberMembers - aux1, 3);
+    int aux3 = max(project.numberMembers - aux1 - 3, 0);
+    List<Widget> children = new List<Widget>();
+
+    children.add(new Center(
+        child: FittedBox(
+      alignment: Alignment.center,
+      fit: BoxFit.fitWidth,
+      child: Text(
+        project.name,
+        style: Styles.titleDesign,
+      ),
+    )));
+    children.add(new Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        for (i = 0; i < aux1; i++)
+          IconButton(
+            icon: CircleAvatar(
+              backgroundImage: AssetImage('assets/EU.jpg'),
+            ),
+            onPressed: () {
+              _openEmptyPage(context);
+              print('Membro1');
+            },
+          ),
+      ],
+    ));
+    if (aux2 != 0)
+      children.add(new Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          for (i = 0; i < aux2; i++)
+            IconButton(
+              icon: CircleAvatar(
+                backgroundImage: AssetImage('assets/EU.jpg'),
+              ),
+              onPressed: () {
+                _openEmptyPage(context);
+                print('Membro2');
+              },
+            ),
+        ],
+      ));
+    if (aux3 != 0)
+      children.add(new Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          for (i = 0; i < aux3; i++)
+            IconButton(
+              icon: CircleAvatar(
+                backgroundImage: AssetImage('assets/EU.jpg'),
+              ),
+              onPressed: () {
+                _openEmptyPage(context);
+                print('Membro3');
+              },
+            ),
+        ],
+      ));
+
+    return new Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: children);
   }
 
   void _openEmptyPage(BuildContext context) {

@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-// ignore: unused_import
-import 'package:primeira_app/design/letters_design.dart';
 import '../design/colors.dart';
 
 class LoginPage extends StatefulWidget {
