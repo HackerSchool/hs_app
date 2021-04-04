@@ -18,9 +18,9 @@ class MemberInformation extends MemberList {
       photo: 'EU.jpg',
     ),
     MemberList(
-      name: 'Pedro Ventura',
+      name: 'Eu estou aqui',
       id: '93155',
-      photo: 'EU.jpg',
+      photo: 'hs_logo.png',
     ),
     MemberList(
       name: 'Pedro Ventura',
