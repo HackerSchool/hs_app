@@ -1,24 +1,58 @@
 import '../lists/member_list.dart';
 
-/* class MemberInformation extends MemberList {
+class MemberInformation extends MemberList {
   static final List<MemberList> items = [
     MemberList(
       name: 'Pedro Ventura',
       id: '93155',
       photo: 'EU.jpg',
     ),
+    MemberList(
+      name: 'Pedro Ventura',
+      id: '93155',
+      photo: 'EU.jpg',
+    ),
+    MemberList(
+      name: 'Pedro Ventura',
+      id: '93155',
+      photo: 'EU.jpg',
+    ),
+    MemberList(
+      name: 'Pedro Ventura',
+      id: '93155',
+      photo: 'EU.jpg',
+    ),
+    MemberList(
+      name: 'Pedro Ventura',
+      id: '93155',
+      photo: 'EU.jpg',
+    ),
+    MemberList(
+      name: 'Pedro Ventura',
+      id: '93155',
+      photo: 'EU.jpg',
+    ),
+    MemberList(
+      name: 'Pedro Ventura',
+      id: '93155',
+      photo: 'EU.jpg',
+    ),
+    MemberList(
+      name: 'Pedro Ventura',
+      id: '93155',
+      photo: 'EU.jpg',
+    ),
+    MemberList(
+      name: 'Pedro Ventura',
+      id: '93155',
+      photo: 'EU.jpg',
+    ),
   ];
-}
- */
-
-class MemberInformation extends MemberList {
-  static final MemberList memberOne = MemberList(
-    name: 'Pedro Ventura',
-    id: '93155',
-    photo: 'EU.jpg',
-  );
-
   static MemberList oneItem() {
-    return memberOne;
+    return items[0];
+  }
+
+  static List<MemberList> allItems() {
+    return items;
   }
 }

@@ -9,8 +9,8 @@ import 'design/colors.dart';
 void main() {
   final mainPage = MainPageInformation.allItems();
   final menu = MenuInformation.allItems();
-  final member = MemberInformation.oneItem();
   final project = ProjectPageInformation.allItems();
+  final member = MemberInformation.allItems();
 
   return runApp(MaterialApp(
     theme: ThemeData(

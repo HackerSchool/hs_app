@@ -25,6 +25,7 @@ class _LoginPageState extends State<LoginPage> {
 /*                   SizedBox(
                     height: 100,
                   ), */
+                  // ignore: deprecated_member_use
                   RaisedButton(
                       color: backgroundGrey,
                       child: Text(

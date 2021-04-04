@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:primeira_app/information/member_information.dart';
 import 'package:primeira_app/lists/project_list.dart';
 import '../lists/menu_list.dart';
 import '../lists/announcement_list.dart';
@@ -8,11 +9,12 @@ import '../design/colors.dart';
 import 'one_announcement_page.dart';
 import '../pages/project_page.dart';
 import '../pages/login.dart';
+import '../pages/members.dart';
 
 class MainPageDesign extends StatelessWidget {
   final List<AnnouncementInformation> _announcementInformations;
   final List<MenuList> _menuList;
-  final MemberList _memberList;
+  final List<MemberList> _memberList;
   final List<ProjectInformation> _projectList;
 
   MainPageDesign(this._announcementInformations, this._menuList,
@@ -74,7 +76,7 @@ class MainPageDesign extends StatelessWidget {
           //REVER COLOCAÇÃO
           padding: EdgeInsets.only(right: 10),
           child: CircleAvatar(
-            backgroundImage: AssetImage('assets/${_memberList.photo}'),
+            backgroundImage: AssetImage('assets/${_memberList[0].photo}'),
           ),
         )
       ],
@@ -123,7 +125,7 @@ class MainPageDesign extends StatelessWidget {
               alignment: Alignment.centerLeft,
               //alignment: Alignment(-1, 0.2),
               child: CircleAvatar(
-                backgroundImage: AssetImage('assets/${_memberList.photo}'),
+                backgroundImage: AssetImage('assets/${_memberList[0].photo}'),
                 radius: 40.0,
               ),
             ),
@@ -131,7 +133,7 @@ class MainPageDesign extends StatelessWidget {
               //alignment: Alignment(0, 0),
               alignment: Alignment.centerLeft + Alignment(1.4, -0.2),
               child: Text(
-                _memberList.name,
+                _memberList[0].name,
                 style: TextStyle(color: textGrey, fontSize: 20.0),
               ),
             ),
@@ -139,7 +141,7 @@ class MainPageDesign extends StatelessWidget {
               //alignment: Alignment(-0.35, 0.4),3
               alignment: Alignment.centerLeft + Alignment(0.9, 0.2),
               child: Text(
-                'ist1${_memberList.id}',
+                'ist1${_memberList[0].id}',
                 style: TextStyle(color: textGrey, fontSize: 10.0),
               ),
             ),
@@ -220,6 +222,11 @@ class MainPageDesign extends StatelessWidget {
         MaterialPageRoute(builder: (context) => ProjectsPage(projectList)));
   }
 
+  void _openMembersPage(BuildContext context, List<MemberList> memberList) {
+    Navigator.push(context,
+        MaterialPageRoute(builder: (context) => MembersPage(memberList)));
+  }
+
   void _openLoginPage(BuildContext context) {
     Navigator.push(
         context, MaterialPageRoute(builder: (context) => LoginPage()));
@@ -231,6 +238,8 @@ class MainPageDesign extends StatelessWidget {
       _openLoginPage(context);
     } else if (index == 2) {
       _openProjectsPage(context, _projectList);
+    } else if (index == 4) {
+      _openMembersPage(context, _memberList);
     } else {
       _openEmptyPage(context);
     }
