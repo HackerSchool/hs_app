@@ -97,7 +97,7 @@ class _ProjectsPageState extends State<ProjectsPage> {
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(4.0),
               gradient: LinearGradient(
-                colors: [backgroundGreen, announcementGrey],
+                colors: [announcementGrey, backgroundGreen],
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
               )),
@@ -140,7 +140,6 @@ class _ProjectsPageState extends State<ProjectsPage> {
             ),
             onPressed: () {
               _openEmptyPage(context);
-              print('Membro1');
             },
           ),
       ],

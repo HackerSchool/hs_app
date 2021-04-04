@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../design/colors.dart';
+import '../design/letters_design.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -21,10 +22,18 @@ class _LoginPageState extends State<LoginPage> {
                     'assets/hs_logo.png',
                     color: titleGrey,
                   ),
-                  /* Text(
-                    'Click on the logo to start',
-                    style: Styles.textDesign,
+/*                   SizedBox(
+                    height: 100,
                   ), */
+                  RaisedButton(
+                      color: backgroundGrey,
+                      child: Text(
+                        'Login',
+                        style: Styles.textDesign,
+                      ),
+                      onPressed: () {
+                        openEmptyPage(context);
+                      }),
                 ],
               ),
             ),

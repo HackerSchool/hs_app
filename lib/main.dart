@@ -14,7 +14,7 @@ void main() {
 
   return runApp(MaterialApp(
     theme: ThemeData(
-      primaryColor: backgroundGrey,
+      primarySwatch: Colors.green,
       primaryColorLight: backgroundGrey,
       accentColor: backgroundGrey,
     ),

@@ -1,3 +1,4 @@
+import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../lists/announcement_list.dart';
@@ -31,15 +32,6 @@ class OneAnnouncementPage extends StatelessWidget {
             ))));
   }
 
-  /* List<Widget> _pageAnnounce(
-      BuildContext context, AnnouncementInformation announcementInformations) {
-    var information = List<Widget>();
-    information.add(_putTitle('Description:', Styles.titleDesign, 10.0));
-    information.add(_putTitle('Description:', Styles.titleDesign, 25.0));
-
-    return information;
-  } */
-
   List<Widget> _pageAnnounce(
       BuildContext context, AnnouncementInformation announcementInformations) {
     List<Widget> information = [
@@ -50,9 +42,8 @@ class OneAnnouncementPage extends StatelessWidget {
       _putTitle(announcementInformations.eventDate, Styles.textDesign, 25.0),
       _putTitle('Event Hour:', Styles.titleDesign, 5.0),
       _putTitle(announcementInformations.eventHour, Styles.textDesign, 25.0),
-      //TENHO DE TORNAR OS LINKS CLICÁVEIS
-      _putTitle('Links:', Styles.titleDesign, 5.0),
-      _putTitle(announcementInformations.links, Styles.textDesign, 25.0),
+      _putTitle('Links (clickable):', Styles.titleDesign, 5.0),
+      _putLink(announcementInformations.links, Styles.textDesign, 25.0),
     ];
     return information;
   }
@@ -73,6 +64,19 @@ class OneAnnouncementPage extends StatelessWidget {
         textAlign: TextAlign.left,
         style: styleToPut,
       ),
+    );
+  }
+
+  Widget _putLink(String titleToPut, TextStyle styleToPut, double distance) {
+    return Container(
+      padding: EdgeInsets.fromLTRB(0, 0, 0, distance),
+      child: new InkWell(
+          child: new Text(
+            'Zoom',
+            textAlign: TextAlign.left,
+            style: styleToPut,
+          ),
+          onTap: () => launch(titleToPut)),
     );
   }
 }
@@ -151,6 +155,8 @@ class _AddOneAnnouncementState extends State<AddOneAnnouncement> {
                     onPressed: () {
                       showDatePicker(
                         context: context,
+                        initialEntryMode: DatePickerEntryMode.calendar,
+                        initialDatePickerMode: DatePickerMode.day,
                         initialDate: _announceDate == null
                             ? DateTime.now()
                             : _announceDate,
