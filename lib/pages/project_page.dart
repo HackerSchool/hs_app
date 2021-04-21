@@ -107,7 +107,7 @@ class _ProjectsPageState extends State<ProjectsPage> {
         ),
       ),
       onTap: () {
-        _openEmptyPage(context);
+        _openProjectPage(context, project);
         print('Projeto');
       },
     );
@@ -175,6 +175,119 @@ class _ProjectsPageState extends State<ProjectsPage> {
             ),
         ],
       ));
+
+    return new Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: children);
+  }
+
+  void _openProjectPage(BuildContext context, ProjectInformation project) {
+    Navigator.push(context,
+        MaterialPageRoute(builder: (context) => OneProjectPage(project)));
+  }
+
+  void _openEmptyPage(BuildContext context) {
+    Navigator.push(context, MaterialPageRoute(
+      builder: (BuildContext context) {
+        return Scaffold(
+          backgroundColor: backgroundGrey,
+          appBar: AppBar(
+            backgroundColor: backgroundGreen,
+          ),
+        );
+      },
+    ));
+  }
+}
+
+class OneProjectPage extends StatelessWidget {
+  final ProjectInformation project;
+
+  OneProjectPage(this.project);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        backgroundColor: backgroundGrey,
+        appBar: AppBar(
+          backgroundColor: backgroundGreen,
+          title: Text(
+            'HS APP',
+            style: Styles.titleDesign,
+          ),
+        ),
+        body: Padding(
+            padding: const EdgeInsets.all(20),
+            child: SingleChildScrollView(
+                child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: _pageAnnounce(context, project),
+            ))));
+  }
+
+  List<Widget> _pageAnnounce(BuildContext context, ProjectInformation project) {
+    List<Widget> information = [
+      _putImage(project.photo),
+      _putTitle('Description:', Styles.titleDesign, 5.0),
+      _putTitle('Aqui fica a descrição', Styles.textDesign, 25.0),
+      _putTitle('Project Date:', Styles.titleDesign, 5.0),
+      _putTitle('Aqui metes a data', Styles.textDesign, 25.0),
+      _putTitle('Skills used:', Styles.titleDesign, 5.0),
+      _putTitle('Aqui metes a hora', Styles.textDesign, 25.0),
+      _putTitle('Members:', Styles.titleDesign, 5.0),
+      _putMembers(context, project),
+    ];
+    return information;
+  }
+
+  Widget _putImage(url) {
+    return Container(
+      padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+      constraints: BoxConstraints.tightFor(height: 190.0),
+      child: Image.network(url, fit: BoxFit.fitWidth),
+    );
+  }
+
+  Widget _putTitle(String titleToPut, TextStyle styleToPut, double distance) {
+    return Container(
+      padding: EdgeInsets.fromLTRB(0, 0, 0, distance),
+      child: Text(
+        titleToPut,
+        textAlign: TextAlign.left,
+        style: styleToPut,
+      ),
+    );
+  }
+
+  Widget _putMembers(context, ProjectInformation project) {
+    return Container(
+      padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+      constraints: BoxConstraints.tightFor(height: 190.0),
+      child: Padding(
+          padding: EdgeInsets.all(20.0), child: putMembers(context, project)),
+    );
+  }
+
+  Column putMembers(BuildContext context, ProjectInformation project) {
+    int i = 0;
+    List<Widget> children = new List<Widget>();
+
+    children.add(new Row(
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: [
+        for (i = 0; i < project.numberMembers; i++)
+          IconButton(
+            icon: CircleAvatar(
+              backgroundImage: AssetImage('assets/EU.jpg'),
+            ),
+            onPressed: () {
+              _openEmptyPage(context);
+            },
+          ),
+      ],
+    ));
 
     return new Column(
         crossAxisAlignment: CrossAxisAlignment.start,

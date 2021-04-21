@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:primeira_app/information/member_information.dart';
 import 'package:primeira_app/lists/project_list.dart';
 import '../lists/menu_list.dart';
 import '../lists/announcement_list.dart';
