@@ -47,6 +47,61 @@ class MemberInformation extends MemberList {
       id: '93155',
       photo: 'EU.jpg',
     ),
+    MemberList(
+      name: 'Pedro Ventura',
+      id: '93155',
+      photo: 'EU.jpg',
+    ),
+    MemberList(
+      name: 'Pedro Ventura',
+      id: '93155',
+      photo: 'EU.jpg',
+    ),
+    MemberList(
+      name: 'Pedro Ventura',
+      id: '93155',
+      photo: 'EU.jpg',
+    ),
+    MemberList(
+      name: 'Pedro Ventura',
+      id: '93155',
+      photo: 'EU.jpg',
+    ),
+    MemberList(
+      name: 'Pedro Ventura',
+      id: '93155',
+      photo: 'EU.jpg',
+    ),
+    MemberList(
+      name: 'Pedro Ventura',
+      id: '93155',
+      photo: 'EU.jpg',
+    ),
+    MemberList(
+      name: 'Pedro Ventura',
+      id: '93155',
+      photo: 'EU.jpg',
+    ),
+    MemberList(
+      name: 'Pedro Ventura',
+      id: '93155',
+      photo: 'EU.jpg',
+    ),
+    MemberList(
+      name: 'Pedro Ventura',
+      id: '93155',
+      photo: 'EU.jpg',
+    ),
+    MemberList(
+      name: 'Pedro Ventura',
+      id: '93155',
+      photo: 'EU.jpg',
+    ),
+    MemberList(
+      name: 'Pedro Ventura',
+      id: '93155',
+      photo: 'EU.jpg',
+    ),
   ];
   static MemberList oneItem() {
     return items[0];

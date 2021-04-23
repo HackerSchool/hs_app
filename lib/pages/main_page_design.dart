@@ -5,10 +5,11 @@ import '../lists/announcement_list.dart';
 import '../lists/member_list.dart';
 import '../design/letters_design.dart';
 import '../design/colors.dart';
-import 'one_announcement_page.dart';
+import '../pages/one_announcement_page.dart';
 import '../pages/project_page.dart';
 import '../pages/login.dart';
 import '../pages/members.dart';
+import '../pages/search_for_a_skill.dart';
 
 class MainPageDesign extends StatelessWidget {
   final List<AnnouncementInformation> _announcementInformations;
@@ -231,12 +232,22 @@ class MainPageDesign extends StatelessWidget {
         context, MaterialPageRoute(builder: (context) => LoginPage()));
   }
 
+  void _openSearchForASkillPage(
+      BuildContext context, List<MemberList> memberList) {
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) => SearchForASkillPage(memberList)));
+  }
+
   void _choosePageToOpen(
       BuildContext context, List<ProjectInformation> projectList, int index) {
     if (index == 1) {
       _openLoginPage(context);
     } else if (index == 2) {
       _openProjectsPage(context, _projectList);
+    } else if (index == 3) {
+      _openSearchForASkillPage(context, _memberList);
     } else if (index == 4) {
       _openMembersPage(context, _memberList);
     } else {

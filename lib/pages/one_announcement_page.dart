@@ -5,7 +5,6 @@ import '../lists/announcement_list.dart';
 import '../design/letters_design.dart';
 import '../design/colors.dart';
 
-//É PARA APAGAR\\//É SÓ CÓCÓ\\
 class OneAnnouncementPage extends StatelessWidget {
   final AnnouncementInformation announcementInformations;
 
@@ -36,23 +35,40 @@ class OneAnnouncementPage extends StatelessWidget {
       BuildContext context, AnnouncementInformation announcementInformations) {
     List<Widget> information = [
       _putImage(announcementInformations.iconLink),
-      _putTitle('Description:', Styles.titleDesign, 5.0),
+      _putTitle('Description:', Styles.addAnnounceTitle, 5.0),
       _putTitle(announcementInformations.explanation, Styles.textDesign, 25.0),
-      _putTitle('Event Date:', Styles.titleDesign, 5.0),
+      _putTitle('Event Date:', Styles.addAnnounceTitle, 5.0),
       _putTitle(announcementInformations.eventDate, Styles.textDesign, 25.0),
-      _putTitle('Event Hour:', Styles.titleDesign, 5.0),
+      _putTitle('Event Hour:', Styles.addAnnounceTitle, 5.0),
       _putTitle(announcementInformations.eventHour, Styles.textDesign, 25.0),
-      _putTitle('Links (clickable):', Styles.titleDesign, 5.0),
+      _putTitle('Links (clickable):', Styles.addAnnounceTitle, 5.0),
       _putLink(announcementInformations.links, Styles.textDesign, 25.0),
     ];
     return information;
   }
 
-  Widget _putImage(String url) {
+/*   Widget _putImage(String url) {
     return Container(
       padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
       constraints: BoxConstraints.tightFor(height: 190.0),
       child: Image.network(url, fit: BoxFit.fitWidth),
+    );
+  } */
+  Widget _putImage(url) {
+    return Container(
+      padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+      constraints: BoxConstraints.tightFor(height: 100.0),
+      child: Stack(
+        children: <Widget>[
+          Align(
+            alignment: Alignment.topCenter,
+            child: CircleAvatar(
+              backgroundImage: NetworkImage(url),
+              radius: 50.0,
+            ),
+          ),
+        ],
+      ),
     );
   }
 

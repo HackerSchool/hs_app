@@ -108,7 +108,6 @@ class _ProjectsPageState extends State<ProjectsPage> {
       ),
       onTap: () {
         _openProjectPage(context, project);
-        print('Projeto');
       },
     );
   }
@@ -138,7 +137,7 @@ class _ProjectsPageState extends State<ProjectsPage> {
               backgroundImage: AssetImage('assets/EU.jpg'),
             ),
             onPressed: () {
-              _openEmptyPage(context);
+              _openProjectPage(context, project);
             },
           ),
       ],
@@ -153,8 +152,7 @@ class _ProjectsPageState extends State<ProjectsPage> {
                 backgroundImage: AssetImage('assets/EU.jpg'),
               ),
               onPressed: () {
-                _openEmptyPage(context);
-                print('Membro2');
+                _openProjectPage(context, project);
               },
             ),
         ],
@@ -169,8 +167,7 @@ class _ProjectsPageState extends State<ProjectsPage> {
                 backgroundImage: AssetImage('assets/EU.jpg'),
               ),
               onPressed: () {
-                _openEmptyPage(context);
-                print('Membro3');
+                _openProjectPage(context, project);
               },
             ),
         ],
@@ -186,19 +183,6 @@ class _ProjectsPageState extends State<ProjectsPage> {
     Navigator.push(context,
         MaterialPageRoute(builder: (context) => OneProjectPage(project)));
   }
-
-  void _openEmptyPage(BuildContext context) {
-    Navigator.push(context, MaterialPageRoute(
-      builder: (BuildContext context) {
-        return Scaffold(
-          backgroundColor: backgroundGrey,
-          appBar: AppBar(
-            backgroundColor: backgroundGreen,
-          ),
-        );
-      },
-    ));
-  }
 }
 
 class OneProjectPage extends StatelessWidget {
@@ -213,7 +197,7 @@ class OneProjectPage extends StatelessWidget {
         appBar: AppBar(
           backgroundColor: backgroundGreen,
           title: Text(
-            'HS APP',
+            project.name,
             style: Styles.titleDesign,
           ),
         ),
@@ -223,20 +207,20 @@ class OneProjectPage extends StatelessWidget {
                 child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: _pageAnnounce(context, project),
+              children: _pageProject(context, project),
             ))));
   }
 
-  List<Widget> _pageAnnounce(BuildContext context, ProjectInformation project) {
+  List<Widget> _pageProject(BuildContext context, ProjectInformation project) {
     List<Widget> information = [
       _putImage(project.photo),
-      _putTitle('Description:', Styles.titleDesign, 5.0),
-      _putTitle('Aqui fica a descrição', Styles.textDesign, 25.0),
-      _putTitle('Project Date:', Styles.titleDesign, 5.0),
+      _putTitle('Description:', Styles.addAnnounceTitle, 5.0),
+      _putTitle(project.explanation, Styles.textDesign, 25.0),
+      _putTitle('Project Date:', Styles.addAnnounceTitle, 5.0),
       _putTitle('Aqui metes a data', Styles.textDesign, 25.0),
-      _putTitle('Skills used:', Styles.titleDesign, 5.0),
-      _putTitle('Aqui metes a hora', Styles.textDesign, 25.0),
-      _putTitle('Members:', Styles.titleDesign, 5.0),
+      _putTitle('Skills used:', Styles.addAnnounceTitle, 5.0),
+      _putTitle('Aqui metes os skills usados', Styles.textDesign, 25.0),
+      _putTitle('Members:', Styles.addAnnounceTitle, 5.0),
       _putMembers(context, project),
     ];
     return information;
@@ -245,8 +229,18 @@ class OneProjectPage extends StatelessWidget {
   Widget _putImage(url) {
     return Container(
       padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
-      constraints: BoxConstraints.tightFor(height: 190.0),
-      child: Image.network(url, fit: BoxFit.fitWidth),
+      constraints: BoxConstraints.tightFor(height: 100.0),
+      child: Stack(
+        children: <Widget>[
+          Align(
+            alignment: Alignment.topCenter,
+            child: CircleAvatar(
+              backgroundImage: NetworkImage(url),
+              radius: 50.0,
+            ),
+          ),
+        ],
+      ),
     );
   }
 
@@ -272,27 +266,36 @@ class OneProjectPage extends StatelessWidget {
 
   Column putMembers(BuildContext context, ProjectInformation project) {
     int i = 0;
+    int aux1 = min(project.numberMembers, 6);
     List<Widget> children = new List<Widget>();
 
     children.add(new Row(
-      mainAxisAlignment: MainAxisAlignment.start,
-      children: [
-        for (i = 0; i < project.numberMembers; i++)
-          IconButton(
-            icon: CircleAvatar(
-              backgroundImage: AssetImage('assets/EU.jpg'),
-            ),
-            onPressed: () {
-              _openEmptyPage(context);
-            },
-          ),
-      ],
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [for (i = 0; i < aux1; i++) memberIcon(context)],
     ));
+    if (project.numberMembers > 6)
+      children.add(new Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          for (i = 0; i < project.numberMembers - 6; i++) memberIcon(context)
+        ],
+      ));
 
     return new Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.start,
         children: children);
+  }
+
+  Widget memberIcon(BuildContext context) {
+    return IconButton(
+      icon: CircleAvatar(
+        backgroundImage: AssetImage('assets/EU.jpg'),
+      ),
+      onPressed: () {
+        _openEmptyPage(context);
+      },
+    );
   }
 
   void _openEmptyPage(BuildContext context) {
