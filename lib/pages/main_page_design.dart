@@ -216,10 +216,12 @@ class MainPageDesign extends StatelessWidget {
         context, MaterialPageRoute(builder: (context) => AddOneAnnouncement()));
   }
 
-  void _openProjectsPage(
-      BuildContext context, List<ProjectInformation> projectList) {
-    Navigator.push(context,
-        MaterialPageRoute(builder: (context) => ProjectsPage(projectList)));
+  void _openProjectsPage(BuildContext context,
+      List<ProjectInformation> projectList, List<MemberList> memberList) {
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) => ProjectsPage(projectList, memberList)));
   }
 
   void _openMembersPage(BuildContext context, List<MemberList> memberList) {
@@ -245,7 +247,7 @@ class MainPageDesign extends StatelessWidget {
     if (index == 1) {
       _openLoginPage(context);
     } else if (index == 2) {
-      _openProjectsPage(context, _projectList);
+      _openProjectsPage(context, _projectList, _memberList);
     } else if (index == 3) {
       _openSearchForASkillPage(context, _memberList);
     } else if (index == 4) {

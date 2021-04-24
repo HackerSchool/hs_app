@@ -83,16 +83,21 @@ class OneAnnouncementPage extends StatelessWidget {
     );
   }
 
-  Widget _putLink(String titleToPut, TextStyle styleToPut, double distance) {
-    return Container(
-      padding: EdgeInsets.fromLTRB(0, 0, 0, distance),
-      child: new InkWell(
-          child: new Text(
-            'Zoom',
-            textAlign: TextAlign.left,
-            style: styleToPut,
-          ),
-          onTap: () => launch(titleToPut)),
+  Widget _putLink(String url, TextStyle styleToPut, double distance) {
+    return ElevatedButton(
+      style: ButtonStyle(
+        backgroundColor: MaterialStateProperty.resolveWith<Color>(
+          (Set<MaterialState> states) {
+            if (states.contains(MaterialState.pressed)) return backgroundGrey;
+            return Colors.white; // Use the component's default.
+          },
+        ),
+      ),
+      onPressed: () => {launch(url)},
+      child: Text(
+        "Zoom",
+        style: TextStyle(color: announcementGrey),
+      ),
     );
   }
 }

@@ -64,7 +64,7 @@ class _MembersPageState extends State<MembersPage> {
     int i = 0;
     int j = 0;
     int numberFor = number ~/ 3;
-    List<Widget> children = new List<Widget>();
+    List<Widget> children = [];
 
     for (j = 0; j < numberFor; j++) {
       children.add(new Row(
@@ -107,7 +107,7 @@ class _MembersPageState extends State<MembersPage> {
   }
 
   Column putMember(BuildContext context, MemberList member) {
-    List<Widget> children = new List<Widget>();
+    List<Widget> children = [];
 
     children.add(new Row(
       mainAxisSize: MainAxisSize.max,
@@ -198,11 +198,20 @@ class OneMemberPage extends StatelessWidget {
 
   Widget _putClickable(
       String identifier, String url, TextStyle styleToPut, double distance) {
-    return RaisedButton(
+    return ElevatedButton(
+      style: ButtonStyle(
+        backgroundColor: MaterialStateProperty.resolveWith<Color>(
+          (Set<MaterialState> states) {
+            if (states.contains(MaterialState.pressed)) return backgroundGrey;
+            return Colors.white; // Use the component's default.
+          },
+        ),
+      ),
       onPressed: () => {launch("$identifier:$url")},
-      child: Text(url),
-      textColor: announcementGrey,
-      padding: const EdgeInsets.all(5.0),
+      child: Text(
+        url,
+        style: TextStyle(color: announcementGrey),
+      ),
     );
   }
 

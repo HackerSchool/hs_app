@@ -25,7 +25,7 @@ class MenuInformation extends MenuList {
       icon: Icons.settings,
     ),
     MenuList(
-      title: 'Links',
+      title: 'Links and Forms',
       icon: Icons.link_off_sharp,
     ),
     MenuList(
