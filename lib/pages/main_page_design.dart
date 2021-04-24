@@ -10,6 +10,7 @@ import '../pages/project_page.dart';
 import '../pages/login.dart';
 import '../pages/members.dart';
 import '../pages/search_for_a_skill.dart';
+import '../pages/links&forms.dart';
 
 class MainPageDesign extends StatelessWidget {
   final List<AnnouncementInformation> _announcementInformations;
@@ -242,6 +243,14 @@ class MainPageDesign extends StatelessWidget {
             builder: (context) => SearchForASkillPage(memberList)));
   }
 
+  void _openLinksPage(
+      BuildContext context) {
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) => LinksPage()));
+  }
+
   void _choosePageToOpen(
       BuildContext context, List<ProjectInformation> projectList, int index) {
     if (index == 1) {
@@ -252,6 +261,8 @@ class MainPageDesign extends StatelessWidget {
       _openSearchForASkillPage(context, _memberList);
     } else if (index == 4) {
       _openMembersPage(context, _memberList);
+    } else if (index == 6) {
+      _openLinksPage(context);
     } else {
       _openEmptyPage(context);
     }

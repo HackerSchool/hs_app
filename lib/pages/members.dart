@@ -174,6 +174,9 @@ class OneMemberPage extends StatelessWidget {
   List<Widget> _pageMember(BuildContext context, MemberList member) {
     List<Widget> information = [
       _putImage(member.photo, member),
+      SizedBox(
+        height: 16,
+      ),
       _putTitle('Position in HackerSchool:', Styles.addAnnounceTitle, 5.0),
       _putTitle('Member - Development Team', Styles.textDesign, 25.0),
       _putTitle('Description:', Styles.addAnnounceTitle, 5.0),

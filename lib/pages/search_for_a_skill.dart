@@ -77,11 +77,9 @@ const names = [
 class NameSearch extends SearchDelegate<String> {
   final List<String> names;
   final List<MemberList> _memberList;
-
   String result;
 
   NameSearch(this.names, this._memberList);
-
   @override
   List<Widget> buildActions(BuildContext context) {
     return [
