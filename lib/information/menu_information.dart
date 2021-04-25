@@ -29,20 +29,24 @@ class MenuInformation extends MenuList {
       icon: Icons.link_off_sharp,
     ),
     MenuList(
-      title: 'Shop',
-      icon: Icons.shopping_bag_outlined,
-    ),
-    MenuList(
-      title: 'Schedule',
-      icon: Icons.calendar_today,
-    ),
-    MenuList(
-      title: 'Attendance',
-      icon: Icons.sentiment_satisfied_alt_outlined,
-    ),
-    MenuList(
       title: 'Future Ideas',
       icon: Icons.lightbulb_outline_rounded,
+    ),
+    MenuList(
+      title: " ",
+      icon: null,
+    ),
+    MenuList(
+      title: " ",
+      icon: null,
+    ),
+    MenuList(
+      title: " ",
+      icon: null,
+    ),
+    MenuList(
+      title: " ",
+      icon: null,
     ),
   ];
 

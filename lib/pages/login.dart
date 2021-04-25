@@ -22,19 +22,22 @@ class _LoginPageState extends State<LoginPage> {
                     'assets/hs_logo.png',
                     color: titleGrey,
                   ),
-/*                   SizedBox(
-                    height: 100,
-                  ), */
-                  // ignore: deprecated_member_use
-                  RaisedButton(
-                      color: backgroundGrey,
-                      child: Text(
-                        'Login',
-                        style: Styles.textDesign,
+                  ElevatedButton(
+                    style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.resolveWith<Color>(
+                        (Set<MaterialState> states) {
+                          if (states.contains(MaterialState.pressed))
+                            return backgroundGrey;
+                          return backgroundGrey; // Use the component's default.
+                        },
                       ),
-                      onPressed: () {
-                        openEmptyPage(context);
-                      }),
+                    ),
+                    onPressed: () => {openEmptyPage(context)},
+                    child: Text(
+                      'Login',
+                      style: Styles.textDesign,
+                    ),
+                  ),
                 ],
               ),
             ),

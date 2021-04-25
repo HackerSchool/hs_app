@@ -11,6 +11,8 @@ import '../pages/login.dart';
 import '../pages/members.dart';
 import '../pages/search_for_a_skill.dart';
 import '../pages/links&forms.dart';
+import '../pages/settings_page.dart';
+import '../pages/future_ideas.dart';
 
 class MainPageDesign extends StatelessWidget {
   final List<AnnouncementInformation> _announcementInformations;
@@ -243,12 +245,19 @@ class MainPageDesign extends StatelessWidget {
             builder: (context) => SearchForASkillPage(memberList)));
   }
 
-  void _openLinksPage(
-      BuildContext context) {
+  void _openLinksPage(BuildContext context) {
     Navigator.push(
-        context,
-        MaterialPageRoute(
-            builder: (context) => LinksPage()));
+        context, MaterialPageRoute(builder: (context) => LinksPage()));
+  }
+
+  void _openSettingsPage(BuildContext context, List<MemberList> memberList) {
+    Navigator.push(context,
+        MaterialPageRoute(builder: (context) => SettingsPage(memberList)));
+  }
+
+  void _openFutureIdeasPage(BuildContext context) {
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => FutureIdeasPage()));
   }
 
   void _choosePageToOpen(
@@ -261,8 +270,12 @@ class MainPageDesign extends StatelessWidget {
       _openSearchForASkillPage(context, _memberList);
     } else if (index == 4) {
       _openMembersPage(context, _memberList);
+    } else if (index == 5) {
+      _openSettingsPage(context, _memberList);
     } else if (index == 6) {
       _openLinksPage(context);
+    } else if (index == 7) {
+      _openFutureIdeasPage(context);
     } else {
       _openEmptyPage(context);
     }

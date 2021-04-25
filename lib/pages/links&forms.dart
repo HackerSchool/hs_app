@@ -229,15 +229,22 @@ class _AddNewLinkState extends State<AddNewLink> {
                   style: Styles.addAnnounceTitle,
                   textAlign: TextAlign.left,
                 ),
-                // ignore: deprecated_member_use
-                RaisedButton(
-                    color: backgroundGreen,
-                    elevation: 20.0,
-                    child: Text(
-                      'Yes!',
-                      style: Styles.textDesign,
+                ElevatedButton(
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.resolveWith<Color>(
+                      (Set<MaterialState> states) {
+                        if (states.contains(MaterialState.pressed))
+                          return backgroundGreen;
+                        return backgroundGreen; // Use the component's default.
+                      },
                     ),
-                    onPressed: () {})
+                  ),
+                  onPressed: () => {},
+                  child: Text(
+                    'Yes!',
+                    style: Styles.textDesign,
+                  ),
+                ),
               ],
             ))));
   }

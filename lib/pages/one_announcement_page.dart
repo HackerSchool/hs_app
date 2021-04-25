@@ -165,55 +165,69 @@ class _AddOneAnnouncementState extends State<AddOneAnnouncement> {
                   style: Styles.addAnnounceTitle,
                   textAlign: TextAlign.left,
                 ),
-                // ignore: deprecated_member_use
-                RaisedButton(
-                    color: backgroundGreen,
-                    elevation: 20.0,
-                    child: Text(
-                      'Choose a date',
-                      style: Styles.textDesign,
+                ElevatedButton(
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.resolveWith<Color>(
+                      (Set<MaterialState> states) {
+                        if (states.contains(MaterialState.pressed))
+                          return backgroundGreen;
+                        return backgroundGreen; // Use the component's default.
+                      },
                     ),
-                    onPressed: () {
-                      showDatePicker(
-                        context: context,
-                        initialEntryMode: DatePickerEntryMode.calendar,
-                        initialDatePickerMode: DatePickerMode.day,
-                        initialDate: _announceDate == null
-                            ? DateTime.now()
-                            : _announceDate,
-                        firstDate: DateTime(2021),
-                        lastDate: DateTime(2022),
-                      ).then((date) {
-                        setState(() {
-                          _announceDate = date;
-                        });
+                  ),
+                  onPressed: () => {
+                    showDatePicker(
+                      context: context,
+                      initialEntryMode: DatePickerEntryMode.calendar,
+                      initialDatePickerMode: DatePickerMode.day,
+                      initialDate: _announceDate == null
+                          ? DateTime.now()
+                          : _announceDate,
+                      firstDate: DateTime(2021),
+                      lastDate: DateTime(2022),
+                    ).then((date) {
+                      setState(() {
+                        _announceDate = date;
                       });
-                    }),
+                    })
+                  },
+                  child: Text(
+                    'Choose a date',
+                    style: Styles.textDesign,
+                  ),
+                ),
                 Text(
                   'Picked Date: $_announceDate',
                   style: Styles.textDesign,
                   textAlign: TextAlign.left,
                 ),
-                // ignore: deprecated_member_use
-                RaisedButton(
-                    elevation: 20.0,
-                    color: backgroundGreen,
-                    child: Text(
-                      'Choose a hour',
-                      style: Styles.textDesign,
+                ElevatedButton(
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.resolveWith<Color>(
+                      (Set<MaterialState> states) {
+                        if (states.contains(MaterialState.pressed))
+                          return backgroundGreen;
+                        return backgroundGreen; // Use the component's default.
+                      },
                     ),
-                    onPressed: () {
-                      showTimePicker(
-                        context: context,
-                        initialTime: _announceHour == null
-                            ? TimeOfDay.now()
-                            : _announceHour,
-                      ).then((date) {
-                        setState(() {
-                          _announceHour = date;
-                        });
+                  ),
+                  onPressed: () => {
+                    showTimePicker(
+                      context: context,
+                      initialTime: _announceHour == null
+                          ? TimeOfDay.now()
+                          : _announceHour,
+                    ).then((date) {
+                      setState(() {
+                        _announceHour = date;
                       });
-                    }),
+                    })
+                  },
+                  child: Text(
+                    'Choose a hour',
+                    style: Styles.textDesign,
+                  ),
+                ),
                 Text(
                   'Picked Hour: $_announceHour',
                   style: Styles.textDesign,
@@ -244,15 +258,22 @@ class _AddOneAnnouncementState extends State<AddOneAnnouncement> {
                   style: Styles.addAnnounceTitle,
                   textAlign: TextAlign.left,
                 ),
-                // ignore: deprecated_member_use
-                RaisedButton(
-                    color: backgroundGreen,
-                    elevation: 20.0,
-                    child: Text(
-                      'Yes!',
-                      style: Styles.textDesign,
+                ElevatedButton(
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.resolveWith<Color>(
+                      (Set<MaterialState> states) {
+                        if (states.contains(MaterialState.pressed))
+                          return backgroundGreen;
+                        return backgroundGreen; // Use the component's default.
+                      },
                     ),
-                    onPressed: () {})
+                  ),
+                  onPressed: () => {},
+                  child: Text(
+                    'Yes!',
+                    style: Styles.textDesign,
+                  ),
+                ),
               ],
             ))));
   }
