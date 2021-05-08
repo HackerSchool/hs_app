@@ -11,9 +11,43 @@ const formatResponse = (responde) => ({
 });
 
 module.exports = {
-    async findAll(database) {},
-    async findOne(database, id) {},
-    async create(database, data) {},
-    async update(database, data, id) {},
-    async remove(database, id) {},
+    async findAll(database) {
+      const result = await database.select('id', 'm_name', 'm_email', 'm_tlm', 'm_degree', 'm_year', 'm_admin').from('member_')
+      return result.map(formatResponse);
+    },
+
+    async findOne(database, id) {
+      const result = await database
+      .select('id', 'm_name', 'm_email', 'm_tlm', 'm_degree', 'm_year', 'm_admin')
+      .where('id', id)
+      .from('member_');
+    if (result.length === 0) return;
+    return formatResponse(result[0]);
+    },
+
+    async create(database, data) {
+        try {
+        const result = await database.insert(data).into('member_');
+        return this.findOne(database, result[0]);
+      } catch (e) {
+        if (e.code !== 'ER_DUP_ENTRY') throw e;
+        return null;
+      }
+    },
+
+    async update(database, data, id) {
+      const affectedRows = await database('member_').where('id', id).update(data);
+      if (affectedRows > 0) return this.findOne(database, id);
+      return null;
+    },
+
+    async remove(database, id) {
+      try {
+        const affectedRows = await database.where('id', id).from('member_').delete();
+        return affectedRows > 0;
+      } catch (e) {
+        if (e.code !== 'ER_ROW_IS_REFERENCED_2') throw e;
+        return null;
+      }
+    },
 };
