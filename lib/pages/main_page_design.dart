@@ -252,7 +252,7 @@ class MainPageDesign extends StatelessWidget {
 
   void _openSettingsPage(BuildContext context, List<MemberList> memberList) {
     Navigator.push(context,
-        MaterialPageRoute(builder: (context) => SettingsPage(memberList)));
+        MaterialPageRoute(builder: (context) => SettingsPage(memberList[1])));
   }
 
   void _openFutureIdeasPage(BuildContext context) {
