@@ -1,10 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-//import 'package:flutter/cupertino.dart';
-import '../lists/member_list.dart';
 import '../design/colors.dart';
 import '../design/letters_design.dart';
-import '../pages/members.dart';
 
 const courses = ['Meec', 'Memec', 'Leic', 'MeAmb', 'MeBio'];
 
@@ -45,18 +42,13 @@ const projects = [
 ];
 
 class SettingsPage extends StatefulWidget {
-  final MemberList _membersList;
-
-  SettingsPage(this._membersList);
+  SettingsPage();
 
   @override
-  _SettingsPageState createState() => _SettingsPageState(_membersList);
+  _SettingsPageState createState() => _SettingsPageState();
 }
 
 class _SettingsPageState extends State<SettingsPage> {
-  final MemberList _memberList;
-  _SettingsPageState(this._memberList);
-
   bool state1 = true,
       state2 = true,
       state3 = true,
@@ -263,12 +255,12 @@ class _SettingsPageState extends State<SettingsPage> {
                         onPressed: () {
                           Navigator.of(context).pop();
                         },
-                        child: Text("Confirm")),
+                        child: Text("Close")),
                     TextButton(
                         onPressed: () {
                           Navigator.of(context).pop();
                         },
-                        child: Text("Close")),
+                        child: Text("Confirm")),
                   ],
                 );
               });
@@ -306,12 +298,12 @@ class _SettingsPageState extends State<SettingsPage> {
                         onPressed: () {
                           Navigator.of(context).pop();
                         },
-                        child: Text("Confirm")),
+                        child: Text("Close")),
                     TextButton(
                         onPressed: () {
                           Navigator.of(context).pop();
                         },
-                        child: Text("Close")),
+                        child: Text("Confirm")),
                   ],
                 );
               });
