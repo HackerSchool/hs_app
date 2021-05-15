@@ -93,11 +93,11 @@ class _SettingsPageState extends State<SettingsPage> {
             buildAccountOptionRow(context, "Name", 1, 30),
             buildAccountOptionRow(context, "Course", 2, 0),
             buildAccountOptionRow(context, "Position in HackerSchool", 3, 0),
-            buildAccountOptionRow(context, "Time in HackerSchool", 6, 0),
+            buildAccountOptionRow(context, "Time in HackerSchool", 6, 6),
             buildAccountOptionRow(context, "Skills", 4, 0),
             buildAccountOptionRow(context, "Projects Involved", 5, 0),
             buildAccountOptionRow(context, "Phone Number", 1, 9),
-            buildAccountOptionRow(context, "Email", 1, 30),
+            buildAccountOptionRow(context, "Email", 1, 50),
             SizedBox(
               height: 40,
             ),

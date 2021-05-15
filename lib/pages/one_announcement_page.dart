@@ -47,13 +47,6 @@ class OneAnnouncementPage extends StatelessWidget {
     return information;
   }
 
-/*   Widget _putImage(String url) {
-    return Container(
-      padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
-      constraints: BoxConstraints.tightFor(height: 190.0),
-      child: Image.network(url, fit: BoxFit.fitWidth),
-    );
-  } */
   Widget _putImage(url) {
     return Container(
       padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
