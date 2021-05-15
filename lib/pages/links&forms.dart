@@ -123,7 +123,7 @@ class _AddNewLinkState extends State<AddNewLink> {
         appBar: AppBar(
           backgroundColor: backgroundGreen,
           title: Text(
-            'New Announcement',
+            'New Link/Form',
             style: Styles.titleDesign,
           ),
         ),
