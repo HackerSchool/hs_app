@@ -8,6 +8,7 @@ module.exports = {
         res.json(await controller.findAll(req.db));
 
     },
+    
     findOne: async (req, res) => {
 
         let id;
