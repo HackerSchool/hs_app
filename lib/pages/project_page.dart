@@ -105,7 +105,7 @@ class _ProjectsPageState extends State<ProjectsPage> {
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(4.0),
               gradient: LinearGradient(
-                colors: [announcementGrey, backgroundGreen],
+                colors: [backgroundGrey, announcementGrey, backgroundGreen],
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
               )),

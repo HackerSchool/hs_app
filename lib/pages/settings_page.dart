@@ -5,7 +5,7 @@ import '../design/letters_design.dart';
 
 const courses = ['Meec', 'Memec', 'Leic', 'MeAmb', 'MeBio'];
 
-const positionHS = ['Direção', 'Membro'];
+const positionHS = ['Direção', 'Assistente de Direção', 'Membro'];
 
 const skills = [
   "C",
