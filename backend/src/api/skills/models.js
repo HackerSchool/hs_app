@@ -26,8 +26,3 @@ module.exports = {
   skillCreate,
   skillUpdate,
 };
-
-(member_id varchar(10) not null,
-skill varchar(20) not null,
-constraint pk_skill primary key(member_id, skill),
-constraint fk_skill_member foreign key(member_id) references member_(member_id));
