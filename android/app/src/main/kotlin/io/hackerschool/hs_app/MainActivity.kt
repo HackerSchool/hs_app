@@ -1,4 +1,4 @@
-package com.example.primeira_app
+package io.hackerschool.hs_app
 
 import io.flutter.embedding.android.FlutterActivity
 
