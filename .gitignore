@@ -43,3 +43,9 @@ app.*.map.json
 
 # Images folder
 .images
+
+# Some folders that may created with flutter create
+web/
+windows/
+macos/
+linux/
