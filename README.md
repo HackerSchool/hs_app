@@ -37,6 +37,7 @@ And, if possible, an issue may be created to fix any problem that occur in the u
 ## Final words
 As mentioned previously, this project was left behind by the team and since then, no one was in charge of moving this project forward. 
 
+
 Therefore and for now, the goal of this project is it to be more independent of whoever is developing it, making an emphasis on the issues being well written and having a more documentation of the current state of the app.
 This implies that the rate of new progress made throughout the time may be uncertain and may end up in a stall state once more.
 But, an effort will be made to avoid this to happen again so soon, but nothing is promised until there is more helping or more labour into this project.
