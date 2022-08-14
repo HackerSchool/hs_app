@@ -5,7 +5,7 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "primeira_app",
+            "name": "hsapp",
             "request": "launch",
             "type": "dart"
         }
