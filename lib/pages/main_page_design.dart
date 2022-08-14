@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:hsapp/lists/project_list.dart';
-import '../lists/menu_list.dart';
-import '../lists/announcement_list.dart';
-import '../lists/member_list.dart';
-import '../design/letters_design.dart';
-import '../design/colors.dart';
-import '../pages/one_announcement_page.dart';
-import '../pages/project_page.dart';
-import '../pages/login.dart';
-import '../pages/members.dart';
-import '../pages/search_for_a_skill.dart';
-import '../pages/links&forms.dart';
-import '../pages/settings_page.dart';
-import '../pages/future_ideas.dart';
+import 'package:hsapp/lists/menu_list.dart';
+import 'package:hsapp/lists/announcement_list.dart';
+import 'package:hsapp/lists/member_list.dart';
+import 'package:hsapp/design/letters_design.dart';
+import 'package:hsapp/design/colors.dart';
+import 'package:hsapp/pages/one_announcement_page.dart';
+import 'package:hsapp/pages/project_page.dart';
+import 'package:hsapp/pages/login.dart';
+import 'package:hsapp/pages/members.dart';
+import 'package:hsapp/pages/search_for_a_skill.dart';
+import 'package:hsapp/pages/links&forms.dart';
+import 'package:hsapp/pages/settings_page.dart';
+import 'package:hsapp/pages/future_ideas.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class MainPageDesign extends StatelessWidget {
   final List<AnnouncementInformation> _announcementInformations;
@@ -20,8 +21,12 @@ class MainPageDesign extends StatelessWidget {
   final List<MemberList> _memberList;
   final List<ProjectInformation> _projectList;
 
-  MainPageDesign(this._announcementInformations, this._menuList,
-      this._memberList, this._projectList);
+  const MainPageDesign(
+    this._announcementInformations,
+    this._menuList,
+    this._memberList,
+    this._projectList,
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -56,30 +61,38 @@ class MainPageDesign extends StatelessWidget {
   Widget _appBarFunction(BuildContext context) {
     return AppBar(
       backgroundColor: backgroundGreen,
-      title: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        mainAxisSize: MainAxisSize.max,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: <Widget>[
-          //Devia pôr como Image.network mas o site não autoriza
-          //Alinhar ao centro!
-          Center(
-            child: Image.asset(
-              'assets/hs_logo.png',
-              alignment: Alignment.center,
-              fit: BoxFit.fitWidth,
-              color: Colors.white,
-              height: 50,
-            ),
+      //Alinhar ao centro!
+      title: Padding(
+        padding: const EdgeInsets.all(32.0),
+        child: InkWell(
+          child: Image.asset(
+            'assets/hs_logo.png',
+            alignment: Alignment.center,
+            fit: BoxFit.fitWidth,
+            color: Colors.white,
           ),
-        ],
+          onTap: () async {
+            final Uri url = Uri.parse("http://hackerschool.io/");
+            if (!await launchUrl(url)) {
+              throw 'Could not launch $url';
+            }
+          },
+        ),
       ),
       actions: <Widget>[
         Padding(
           //REVER COLOCAÇÃO
           padding: EdgeInsets.only(right: 10),
-          child: CircleAvatar(
-            backgroundImage: AssetImage('assets/${_memberList[0].photo}'),
+          child: InkWell(
+            child: CircleAvatar(
+              backgroundImage: AssetImage('assets/${_memberList[0].photo}'),
+            ),
+            onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => OneMemberPage(_memberList[0]),
+              ),
+            ),
           ),
         )
       ],
