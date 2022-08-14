@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:primeira_app/information/member_information.dart';
-import 'package:primeira_app/information/project_information.dart';
+import 'package:hsapp/information/member_information.dart';
+import 'package:hsapp/information/project_information.dart';
 import 'package:flutter/services.dart';
 import 'information/main_page_information.dart';
 import 'information/menu_information.dart';
