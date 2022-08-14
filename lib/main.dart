@@ -14,7 +14,6 @@ void main() {
   final member = MemberInformation.allItems();
 
   WidgetsFlutterBinding.ensureInitialized();
-  SystemChrome.setEnabledSystemUIOverlays([]);
 
   return runApp(MaterialApp(
     theme: ThemeData(
